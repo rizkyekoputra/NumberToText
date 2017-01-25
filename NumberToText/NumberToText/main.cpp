@@ -1,90 +1,33 @@
 #include <iostream>
 #include <string>
+
+#include "IntToWord.h"
+
 using namespace std;
 
 int main()
 {
-	int num,
-		leftDigit,
-		RightDigit;
-
-	string ones[] = { "Zero",
-					"One",
-					"Two",
-					"Three",
-					"Four",
-					"Five",
-					"Six",
-					"Seven",
-					"Eight",
-					"Nine",
-					"Ten",
-					"Eleven",
-					"Twelve",
-					"Thirteen",
-					"Fourteen",
-					"Fifteen",
-					"Sixteen",
-					"Seventeen",
-					"Eighteen",
-					"Nineteen" };
-
-	string tens[] = { "Twenty",
-					"Thirty",
-					"Fourty",
-					"Fifty",
-					"Sixty",
-					"Seventy",
-					"Eighty",
-					"Ninety" };
-
-	string denom[] = { "thousand",
-					"million",
-					"billion",
-					"trillion",
-					"quadrillion",
-					"quintillion",
-					"sextillion",
-					"septillion",
-					"octillion",
-					"nonillion",
-					"decillion",
-					"undecillion",
-					"duodecillion",
-					"tredecillion",
-					"quattuordecillion",
-					"sexdecillion",
-					"septendecillion",
-					"octodecillion",
-					"novemdecillion",
-					"vigintillion" };
+	int num;
+	string lang;
 
 	cout << "Enter a Number: ";
 	cin >> num;
+	cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-	if (num <= 0 || num >= 100)
-	{
-		cout << "The number is not between 1-99." << endl;
+	while (cin.fail()) {
+		cin.clear();
+		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		cout << "Please Enter a Valid Number: ";
+		cin >> num;
 	}
-	else if (num >= 1 && num <= 19)
-	{
-		cout << "The number you have entered is " << ones[num] << endl;
-	}
-	else if (num >= 20 && num <= 99) 
-	{
-		leftDigit = num / 10;
-		RightDigit = num % 10;
 
-		if (RightDigit != 0)
-		{
-			cout << "The number you have enetered is " << tens[leftDigit - 2] << " " << ones[RightDigit] << endl;
-		} 
-		else
-		{
-			cout << "The number you have enetered is " << tens[leftDigit - 2] << endl;
-		}
-		
-	}
+	cout << "Enter output Language: ";
+	getline(cin, lang);
+
+	IntToWord number_1(num, lang);
+	int angka = number_1.getNum();
+	
+	cout << endl << "The number you enter is " << number_1.convert_number(angka) << endl;
 
 	system("PAUSE");
 	return 0;
