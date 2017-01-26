@@ -27,7 +27,7 @@ int main()
 	IntToWord number_1(num, lang);
 	long long int angka = number_1.getNum();
 	
-	cout << endl << "The number you enter is " << number_1.convert_number(angka) << endl;
+	cout << endl << "The number you enter is: " << number_1.convert_number(angka) << endl << endl;
 
 	system("PAUSE");
 	return 0;

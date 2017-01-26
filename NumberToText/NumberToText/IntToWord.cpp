@@ -119,11 +119,16 @@ string IntToWord::convert_nnn(long long int val) {
 }
 
 string IntToWord::convert_number(long long int val) {
+	string sign = "";
+	if (val < 0) {
+		sign = "negative ";
+		val = abs(val);
+	}
 	if (val < 100) {
-		return convert_nn(val);
+		return sign + convert_nn(val);
 	}
 	if (val < 1000) {
-		return convert_nnn(val);
+		return sign + convert_nnn(val);
 	}
 	for (int i = 0; i < sizeof(denom); i++) {
 		int didx = i - 1;
@@ -134,9 +139,9 @@ string IntToWord::convert_number(long long int val) {
 			long long int r = val - (l * mod);
 			string ret = convert_nnn(l) + " " + denom[didx];
 			if (r > 0) {
-				ret = ret + ", " + convert_number(r);
+				ret = ret + " " + convert_number(r);
 			}
-			return ret;
+			return sign + ret;
 		}
 		
 
