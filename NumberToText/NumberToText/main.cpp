@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 #include "IntToWord.h"
 
@@ -7,25 +8,31 @@ using namespace std;
 
 int main()
 {
+	string stringNum;
 	long long int num;
 	string stringLang;
 	int lang;
 	char flag;
+	bool numFlag;
+	char delimiter = ',';
 
 	cout << "===Number to Word Converter===" << endl << endl;
 	do {
-
 		cout << "Enter a Number: ";
-		cin >> num;
-		cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-		while (cin.fail()) {
-			cin.clear();
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			cout << "Please Enter a Valid Number: ";
-			cin >> num;
-			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		}
+		//Check the input number valid or not
+		do {
+			getline(cin, stringNum);
+			if (stringNum.find(delimiter)) {
+				stringNum.erase(remove(stringNum.begin(), stringNum.end(), delimiter), stringNum.end());
+			}
+			try {
+				num = stoll(stringNum);
+				break;
+			}
+			catch (...) {
+				cout << "Please Enter a Valid Number: ";
+			}
+		} while (true);
 
 		cout << "----------------------" << endl;
 		cout << "Language Option" << endl;
@@ -41,7 +48,7 @@ int main()
 			lang = 0;
 		}
 		else {
-			lang = std::stoi(stringLang);
+			lang = stoi(stringLang);
 		}
 
 		IntToWord number_1(num, lang);
@@ -58,6 +65,7 @@ int main()
 
 		cout << endl << "Want to convert more number ? (Y / N) ";
 		cin >> flag;
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
 		cout << endl << endl;
 	} while (flag == 'Y' || flag == 'y');
 
