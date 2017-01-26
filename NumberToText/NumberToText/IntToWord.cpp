@@ -59,7 +59,7 @@ IntToWord::IntToWord() {
 	newNum = 0;
 }
 
-IntToWord::IntToWord(int num, string lang) {
+IntToWord::IntToWord(long long int num, string lang) {
 	newNum = num;
 	newLang = lang;
 }
@@ -68,7 +68,7 @@ IntToWord::~IntToWord() {
 
 }
 
-int IntToWord::getNum() const {
+long long int IntToWord::getNum() const {
 	return newNum;
 }
 
@@ -76,7 +76,7 @@ string IntToWord::getLang() const {
 	return newLang;
 }
 
-void IntToWord::setNum(int num) {
+void IntToWord::setNum(long long int num) {
 	newNum = num;
 }
 
@@ -84,13 +84,13 @@ void IntToWord::setLang(string lang) {
 	newLang = lang;
 }
 
-string IntToWord::convert_nn(int val) {
+string IntToWord::convert_nn(long long int val) {
 	if (val < 20) {
 		return ones[val];
 	}
 	for (int i = 0; i < sizeof(tens); i++) {
 		string dcap = tens[i];
-		int dval = 20 + 10 * i;
+		long long int dval = 20 + 10 * i;
 		if (dval + 10 > val) {
 			if ((val % 10) != 0) {
 				return dcap + "-" + ones[val % 10];
@@ -100,10 +100,10 @@ string IntToWord::convert_nn(int val) {
 	}
 }
 
-string IntToWord::convert_nnn(int val) {
+string IntToWord::convert_nnn(long long int val) {
 	string word = "";
-	int rem = val / 100;
-	int mod = val % 100;
+	long long int rem = val / 100;
+	long long int mod = val % 100;
 	if (rem > 0){
 		word = ones[rem];
 		word += " hundred";
@@ -118,7 +118,7 @@ string IntToWord::convert_nnn(int val) {
 	return word;
 }
 
-string IntToWord::convert_number(int val) {
+string IntToWord::convert_number(long long int val) {
 	if (val < 100) {
 		return convert_nn(val);
 	}
@@ -127,11 +127,11 @@ string IntToWord::convert_number(int val) {
 	}
 	for (int i = 0; i < sizeof(denom); i++) {
 		int didx = i - 1;
-		int dval = int(pow(1000, i));
+		long long int dval = long long int(pow(1000, i));
 		if (dval > val) {
-			int mod = int(pow(1000, didx));
-			int l = val / mod;
-			int r = val - (l * mod);
+			long long int mod = long long int(pow(1000, didx));
+			long long int l = val / mod;
+			long long int r = val - (l * mod);
 			string ret = convert_nnn(l) + " " + denom[didx];
 			if (r > 0) {
 				ret = ret + ", " + convert_number(r);

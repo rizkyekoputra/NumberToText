@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	int num;
+	long long int num;
 	string lang;
 
 	cout << "Enter a Number: ";
@@ -25,7 +25,7 @@ int main()
 	getline(cin, lang);
 
 	IntToWord number_1(num, lang);
-	int angka = number_1.getNum();
+	long long int angka = number_1.getNum();
 	
 	cout << endl << "The number you enter is " << number_1.convert_number(angka) << endl;
 
