@@ -22,7 +22,7 @@ int main()
 		//Check the input number valid or not
 		do {
 			getline(cin, stringNum);
-			if (stringNum.find(delimiter)) {
+			if (stringNum.find(delimiter) && (count(stringNum.begin(), stringNum.end(), delimiter)) <= 1) {
 				stringNum.erase(remove(stringNum.begin(), stringNum.end(), delimiter), stringNum.end());
 			}
 			try {
