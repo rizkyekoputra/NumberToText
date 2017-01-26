@@ -14,7 +14,7 @@ public:
 	IntToWord();
 	
 	//Overload Construtor
-	IntToWord(long long int, string);
+	IntToWord(long long int, int);
 
 	//Destructor
 	~IntToWord();
@@ -23,7 +23,7 @@ public:
 	long long int getNum() const;
 		// getNum - return number that we want to convert
 
-	string getLang() const;
+	int getLang() const;
 		// getLang - return language of converted number
 
 	//Mutator Functions
@@ -31,21 +31,21 @@ public:
 		// setNum - sets number that be convert
 		// @param int - number that be convert
 
-	void setLang(string);
+	void setLang(int);
 		// setLang - sets language that converted wanna be
 		// @param string - language that converted wanna be
 
-	string convert_nn(long long int);
+	string convert_nn(long long int, int);
 		// convert number to word, a value < 100 to English.
 		// @param int - number that will be convert
 		// @return string - number in word
 
-	string convert_nnn(long long int);
+	string convert_nnn(long long int, int);
 		// convert number to word, a value > 100 and < 1000.
 		// @param int - number that will be convert
 		// @return string - number in word
 
-	string convert_number(long long int);
+	string convert_number(long long int, int);
 		// convert number to word.
 		// @param int - number that will be convert
 		// @return string - number in word
@@ -53,10 +53,12 @@ public:
 private:
 	//Member Variables
 	long long int newNum;
-	string newLang;
-	static const char* const ones[];
-	static const char* const tens[];
-	static const char* const denom[];
+	int newLang;
+	static const char* const ones[][20];
+	static const char* const tens[][8];
+	static const char* const denom[][21];
+	static const char* const hundred[];
+	static const char* const negative[];
 };
 
 #endif
